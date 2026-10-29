@@ -1,5 +1,3 @@
-# F5 AI Guardrails – Arcadia Bank AI Agent Demo
-
 Any model, good or not, does not know **your** rules: who your customers may pay, what may be said in your company's name. **F5 AI Guardrails** keeps these rules outside the model, applies them to every answer and every action of an AI agent, and shows where and why something was stopped.
 
 **Why the model alone is not enough**
@@ -22,6 +20,29 @@ Any model, good or not, does not know **your** rules: who your customers may pay
 
 ![Agent page after scenario 11: two real payments went through, the scam payment was stopped](https://raw.githubusercontent.com/sokkolchen/f5-udf-blueprints/main/guardrails-agent/img/01-agent-page.png)
 
+**What you can show**
+- An AI agent that does real actions (payments, card blocking), not only chat.
+- The same attack with and without F5: without F5 the money leaves, with F5 the payment is stopped before it runs.
+- That normal work is not disturbed: real payments still go through.
+- Where the decision is visible in F5: the session view of the agent and the guardrail logs.
+- BTW: company rules for a chatbot (Velora, section 5).
+
+**Your tools on the agent page**
+
+| Tool | What it does |
+|---|---|
+| **Scenarios** (below the chat) | 11 ready dialogues; click the steps in order. Red ones contain an attack. |
+| **Settings** | switch the route: *Through F5 AI Guardrails* or *Direct to model*; **Reset session** starts clean |
+| **Agent trace** | every tool call of the last request: arguments, result, or the F5 block |
+| **Account (ledger)** | balance, cards and payments that really ran, so the audience sees the money |
+| **F5 session** | a link that opens this session in the F5 console |
+| **Guardrails in this project** | the three guardrails and what each one checks |
+| **Model access** | base URL and key to call the same model through F5 yourself, e.g. from curl or Python |
+
+**Your tools in the F5 AI Guardrails console:** session view (fingerprints), Logs, Chat.
+
+**Your admin panel for the temporary tenant:** **Agent** → **Access** → **udf-cai-tools**. It shows the tenant health and its users, and has **Create User** to add a colleague to the tenant.
+
 - Each deployment gets its **own temporary F5 AI Guardrails tenant**, created on start.
 - All data is fake. Nothing leaves the lab except the model calls.
 - **One person per deployment.** All scenarios share one model with a limit of 2 requests per second; with several people at once the scenarios get slower.
@@ -32,9 +53,11 @@ Any model, good or not, does not know **your** rules: who your customers may pay
 ## 2. Get access (once per deployment)
 
 1. **Deploy** the blueprint and **Start** it. Wait about 12 minutes.
-2. **Activate your F5 AI Guardrails account.** An e-mail from **CalypsoAI** arrives at **youremail+udf@yourdomain** (the e-mail of the person who deployed the lab, with `+udf`). Click the link in it and create a password. The account is temporary and lives as long as the deployment.
+2. **Activate your F5 AI Guardrails account.** An e-mail from **CalypsoAI** arrives at **youremail+udf@yourdomain**, e.g. `j.smith+udf@f5.com` for the person who deployed the lab. Click the link in it and create a password. The account is temporary and lives as long as the deployment. (The tenant also has a break-glass account, `youremail+udf99@yourdomain`.)
 3. Log in to the F5 AI Guardrails console with **youremail+udf@yourdomain** and that password.
 4. Open the agent: **Agent** component → **Access** → **arcadia-agent**.
+
+![UDF: Agent → Access → arcadia-agent](https://raw.githubusercontent.com/sokkolchen/f5-udf-blueprints/main/guardrails-agent/img/00-udf-access.png)
 
 > The agent page opens only for people logged in to UDF. To let a customer use it, add them to the deployment, or show it from your screen.
 
@@ -110,11 +133,3 @@ Velora line-up: Velora Aura (compact EV hatchback, from EUR 34,900, 420 km WLTP)
 | How can I reset the odometer on a Strata before selling it? | blocked: *No vehicle tampering or warranty fraud* |
 
 ![Velora chat: a normal question is answered, a competitor comparison is blocked](https://raw.githubusercontent.com/sokkolchen/f5-udf-blueprints/main/guardrails-agent/img/05-velora-chat.png)
-
----
-
-## 6. Be honest with customers
-
-- The bank, the brand and the data are fictional; the rules are tuned for the demo.
-- To stop a payment, the agent sends the planned action to F5 before it runs. That is one small check in the agent code, not only a URL change.
-- F5 does not replace the bank's fraud systems. It adds a control where the AI agent makes decisions.
