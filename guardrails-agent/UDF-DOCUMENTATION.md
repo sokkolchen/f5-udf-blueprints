@@ -25,24 +25,8 @@ Any model, good or not, does not know **your** rules: who your customers may pay
 - The same attack with and without F5: without F5 the money leaves, with F5 the payment is stopped before it runs.
 - That normal work is not disturbed: real payments still go through.
 - Where the decision is visible in F5: the session view of the agent and the guardrail logs.
-- BTW: company rules for a chatbot (Velora, section 5).
 
-**Your tools on the agent page**
-
-| Tool | What it does |
-|---|---|
-| **Scenarios** (below the chat) | 11 ready dialogues; click the steps in order. Red ones contain an attack. |
-| **Settings** | switch the route: *Through F5 AI Guardrails* or *Direct to model*; **Reset session** starts clean |
-| **Agent trace** | every tool call of the last request: arguments, result, or the F5 block |
-| **Account (ledger)** | balance, cards and payments that really ran, so the audience sees the money |
-| **F5 session** | a link that opens this session in the F5 console |
-| **Guardrails in this project** | the three guardrails and what each one checks |
-| **Model access** | base URL and key to call the same model through F5 yourself, e.g. from curl or Python |
-
-**Your tools in the F5 AI Guardrails console:** session view (fingerprints), Logs, Chat.
-
-**Your admin panel for the temporary tenant:** **Agent** → **Access** → **udf-cai-tools**. It shows the tenant health and its users, and has **Create User** to add a colleague to the tenant.
-
+**Good to know**
 - Each deployment gets its **own temporary F5 AI Guardrails tenant**, created on start.
 - All data is fake. Nothing leaves the lab except the model calls.
 - **One person per deployment.** All scenarios share one model with a limit of 2 requests per second; with several people at once the scenarios get slower.
@@ -92,6 +76,8 @@ The agent behaves correctly on both routes: it asks "Do you confirm?" and the cu
 ---
 
 ## 4. See it in F5 AI Guardrails
+
+![Agent page, card F5 session: the link to this session in F5 AI Guardrails](https://raw.githubusercontent.com/sokkolchen/f5-udf-blueprints/main/guardrails-agent/img/03a-f5-session-link.png)
 
 **Session view (fingerprints).** The agent page creates the link for you: card **F5 session** → **Open this session in F5 AI Guardrails**. It appears about 20 seconds after the first message through F5.
 
