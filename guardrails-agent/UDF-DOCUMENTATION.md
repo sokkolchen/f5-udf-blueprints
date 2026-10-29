@@ -88,8 +88,8 @@ The agent behaves correctly on both routes: it asks "Do you confirm?" and the cu
 
 The same tenant has a second project, **Velora Motors - Dealer Chat**: the sales assistant of a fictional German car brand. It shows **company rules for a chatbot**: the brand must not compare itself with competitors, promise discounts, leak product plans or help with tampering.
 
-1. Console → **Chat** → **Project: Velora Motors - Dealer Chat**.
-2. **First message:** paste the dealer instructions below. Without them the model invents car models.
+1. Console → **Chat** → **Project** selector at the bottom (default *Global*) → **Velora Motors - Dealer Chat**.
+2. **First message:** paste the dealer instructions below and press Enter. Without them the model invents car models.
 
 ```
 You are the online sales assistant of Velora Motors, a German car manufacturer, on velora-motors.example and in the Velora app. You help customers choose a Velora model, explain features, equipment, charging, financing basics and how to book a test drive at an authorised Velora dealer. Answer in the customer's language (English or German), briefly and in a friendly tone.
